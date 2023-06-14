@@ -1,1 +1,24 @@
-<p>borrow-details works!</p>
+<button class="btn btn-sm btn-primary my-3" style="float: right;" (click)="redirectToAdd()">Add Book Borrow Record</button>
+
+<table class="table table-bordered text-center">
+  <thead>
+    <tr>
+      <th scope="col">S.N.</th>
+      <th scope="col">Borrower Name</th>
+      <th scope="col">Book Name</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Borrow Date</th>
+      <th scope="col">Return Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let borrowDetail of borrowDetails;">
+      <th scope="row">{{borrowDetail.sn}}</th>
+      <td>{{borrowDetail.name}}</td>
+      <td>{{borrowDetail.book}}</td>
+      <td>{{borrowDetail.quantity}}</td>
+      <td>{{borrowDetail.bdate}}</td>
+      <td>{{borrowDetail.rdate}}</td>
+    </tr>
+  </tbody>
+</table>

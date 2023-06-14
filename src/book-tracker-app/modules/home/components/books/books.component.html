@@ -1,1 +1,31 @@
-<p>books works!</p>
+<h2 class="text-center">Book Records</h2>
+
+<button class="btn btn-sm btn-primary my-3" style="float: right;" (click)="redirectToAdd()">Add Book</button>
+
+<table class="table table-bordered text-center">
+    <thead>
+        <tr>
+            <th scope="col">S.N.</th>
+            <th scope="col">Book Name</th>
+            <th scope="col">Author</th>
+            <th scope="col">Price(Per Book)</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Available Status</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let book of books;">
+            <th scope="row">{{book.sn}}</th>
+            <td>{{book.name}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.price}}</td>
+            <td>{{book.quantity}}</td>
+            <td>{{book.status}}</td>
+            <td>
+                <button class="btn btn-sm btn-primary mx-2" (click)="redirectToEdit(book.id)">Edit</button>
+                <button class="btn btn-sm btn-danger mx-2" (click)="deleteBook(book.id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,25 @@
+<div class="container">
+    <h4 class="text-center my-3">Consumer Details</h4>
+    <form (ngSubmit)="onSubmit()" class="bookContainer">
+        <div class="col-md-6 mb-3">
+            <label for="sn" class="form-label">S.N.</label>
+            <input type="number" class="form-control" id="sn" name="sn" [(ngModel)]="consumer.sn">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="name" class="form-label">Borrower Name</label>
+            <input type="text" class="form-control" id="name" autocomplete="off" name="name" [(ngModel)]="consumer.name">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" class="form-control" id="address" name="address" [(ngModel)]="consumer.address">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="mobile" class="form-label">Mobile No.</label>
+            <input type="number" class="form-control" id="mobile" name="mobile" [(ngModel)]="consumer.mobile">
+        </div>
+        <div class="col-md-6 text-center">
+            <button type="button" class="btn btn-sm btn-secondary mx-2" (click)="redirectToConsumers()">Close</button>
+            <button type="submit" class="btn btn-sm btn-primary">Add Consumer</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,33 @@
+<div class="container">
+    <h4 class="text-center my-3">Book Details</h4>
+    <form class="bookContainer" (ngSubmit)="onSubmit()">
+        <div class="col-md-6 mb-3">
+            <label for="sn" class="form-label">S.N.</label>
+            <input type="number" class="form-control" id="sn" name="sn" [(ngModel)]="book.sn" autocomplete="off">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="name" class="form-label">Book Name</label>
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="book.name" autocomplete="off">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="author" class="form-label">Author</label>
+            <input type="text" class="form-control" id="author" name="author" [(ngModel)]="book.author">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" class="form-control" id="price" name="price" [(ngModel)]="book.price">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="quantity" class="form-label">Quantity</label>
+            <input type="number" class="form-control" id="quantity" name="quantity" [(ngModel)]="book.quantity">
+        </div>
+        <div class="col-md-6 mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="status" name="status" [checked]="book.status ? true : false" [(ngModel)]="book.status">
+            <label class="form-check-label" for="status">Available Status</label>
+        </div>
+        <div class="col-md-6 text-center">
+            <button type="button" class="btn btn-sm btn-secondary mx-2" (click)="redirectToBooks()">Close</button>
+            <button type="submit" class="btn btn-sm btn-primary mx-2">Update Book</button>
+        </div>
+    </form>
+</div>
