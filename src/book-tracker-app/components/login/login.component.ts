@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { FormGroup,FormControl } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/book-tracker-app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,24 @@ export class LoginComponent {
     password: new FormControl('')
   });
 
+  constructor(private auth: AuthService, private router: Router) { }
+
+  ngOnInit() {
+    if (this.auth.isLoggedIn()) {
+      this.router.navigate(['home']);
+    }
+  }
+
   onSubmit() {
-    console.log(this.loginForm.value);
+    if (this.loginForm.valid) {
+      this.auth.login(this.loginForm.value).subscribe(
+        (result) => {
+          this.router.navigate(['home']);
+        },
+        (err: Error) => {
+          alert(err.message);
+        }
+      )
+    }
   }
 }
