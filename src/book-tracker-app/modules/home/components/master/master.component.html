@@ -1,2 +1,25 @@
-<p>master works!</p>
-<router-outlet></router-outlet>
+<header>
+    <div class="homeIcon">
+        <i class="fa-solid fa-house homeIcon-icon" (click)="homeIcon()"></i>
+        <span class="homeIcon-text">{{title}}</span>
+    </div>
+    <div class="logoutButton">
+        <button class="btn btn-sm btn-danger" (click)="logout()">Logout</button>
+    </div>
+</header>
+<div class="sectionContainer">
+    <div class="sideMenuContainer">
+        <ul class="side-menu">
+            <li class="side-menu-item" *ngFor="let menu of sideMenu;">
+                <a class="side-menu-link" [routerLink]="[menu.routerLink]">
+                    <i class="side-menu-link-icon" [class]="menu.icon"></i>
+                    <span class="side-menu-link-text">{{menu.label}}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="articleContainer">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<footer>Copyright © Pawan Shahi 2023.</footer>

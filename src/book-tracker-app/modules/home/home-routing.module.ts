@@ -15,7 +15,7 @@ const routes: Routes = [
       { path: 'borrowDetails', component: BorrowDetailsComponent },
       { path: 'aboutUs', component: AboutUsComponent },
       { path: 'contactUs', component: ContactUsComponent },
-      { path: '', redirectTo: 'home', pathMatch: 'full' }
+      { path: '', redirectTo: '/home/books', pathMatch: 'full' }
     ]
   }
 ];
