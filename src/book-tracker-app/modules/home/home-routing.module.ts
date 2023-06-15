@@ -24,7 +24,7 @@ const routes: Routes = [
       { path: 'books/addBook', component: AddBookComponent },
       { path: 'books/editBook/:id', component: EditBookComponent },
       { path: 'consumers/addConsumer', component: AddConsumerComponent },
-      { path: 'consumers/editConsumer', component: EditConsumerComponent },
+      { path: 'consumers/editConsumer/:id', component: EditConsumerComponent },
       { path: 'borrowDetails/borrowRecord', component: BorrowRecordComponent }
     ]
   }

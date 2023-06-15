@@ -29,13 +29,15 @@ export class EditBookComponent {
             }
           });
         }
+      },
+      error: (params) => {
+        alert(params);
       }
     });
   }
   onSubmit() {
     this.booksService.updateBook(this.book.id, this.book).subscribe({
       next: (response) => {
-        console.log(response);
         this.router.navigate(['home/books']);
       },
       error: (response) => {

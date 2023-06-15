@@ -11,11 +11,11 @@
         </div>
         <div class="col-md-6 mb-3">
             <label for="address" class="form-label">Address</label>
-            <input type="text" class="form-control" id="address" name="address" [(ngModel)]="consumer.address">
+            <input type="text" class="form-control" id="address" name="address" [(ngModel)]="consumer.address" autocomplete="off">
         </div>
         <div class="col-md-6 mb-3">
             <label for="mobile" class="form-label">Mobile No.</label>
-            <input type="number" class="form-control" id="mobile" name="mobile" [(ngModel)]="consumer.mobile">
+            <input type="text" class="form-control" id="mobile" name="mobile" [(ngModel)]="consumer.mobile" autocomplete="off">
         </div>
         <div class="col-md-6 text-center">
             <button type="button" class="btn btn-sm btn-secondary mx-2" (click)="redirectToConsumers()">Close</button>

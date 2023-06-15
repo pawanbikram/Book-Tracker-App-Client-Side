@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Consumer } from '../../models/consumer.model';
 import { Router } from '@angular/router';
+import { ConsumersService } from 'src/book-tracker-app/services/consumers.service';
 
 @Component({
   selector: 'app-consumers',
@@ -9,28 +10,33 @@ import { Router } from '@angular/router';
 })
 
 export class ConsumersComponent {
-  consumer: Consumer = new Consumer();
   consumers: Array<Consumer> = new Array<Consumer>();
-  constructor(private router: Router) {
-    this.consumers = [
-      {
-        sn: 1,
-        name: "Ramesh Subedi",
-        address: "Dhangadhi",
-        mobile: "9811111111"
+  constructor(private router: Router, private consumersService: ConsumersService) {
+  }
+  ngOnInit() {
+    this.consumersService.getAllConsumers().subscribe({
+      next: (response) => {
+        this.consumers = response;
       },
-      {
-        sn: 2,
-        name: "Ramesh Subedi2",
-        address: "Dhangadhi2",
-        mobile: "98111111112"
-      },
-    ];
+      error: (response) => {
+        alert(response);
+      }
+    });
   }
   redirectToAdd() {
     this.router.navigate(['home/consumers/addConsumer']);
   }
-  redirectToEdit() {
-    this.router.navigate(['home/consumers/editConsumer']);
+  redirectToEdit(id: number) {
+    this.router.navigate(['home/consumers/editConsumer', id]);
+  }
+  deleteConsumer(id: number) {
+    this.consumersService.deleteConsumer(id).subscribe({
+      next: (response) => {
+        this.router.navigate(['home/consumers']);
+      },
+      error: (response) => {
+        alert(response);
+      }
+    });   
   }
 }

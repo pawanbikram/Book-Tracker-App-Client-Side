@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Consumer } from '../../../models/consumer.model';
+import { ConsumersService } from 'src/book-tracker-app/services/consumers.service';
 
 @Component({
   selector: 'app-add-consumer',
@@ -11,11 +12,18 @@ import { Consumer } from '../../../models/consumer.model';
 
 export class AddConsumerComponent {
   consumer: Consumer;
-  constructor(private router: Router) {
+  constructor(private router: Router, private consumersService: ConsumersService) {
     this.consumer = new Consumer();
   }
   onSubmit() {
-    this.router.navigate(['home/consumers']);
+    this.consumersService.addConsumer(this.consumer).subscribe({
+      next: (response) => {
+        this.router.navigate(['home/consumers']);
+      },
+      error: (response) => {
+        alert(response);
+      }
+    });
   }
   redirectToConsumers() {
     this.router.navigate(['home/consumers']);

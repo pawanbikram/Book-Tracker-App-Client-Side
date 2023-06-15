@@ -1,3 +1,5 @@
+<h2 class="text-center">Consumer Records</h2>
+
 <button class="btn btn-sm btn-primary my-3" style="float: right;" (click)="redirectToAdd()">Add Consumer</button>
 
 <table class="table table-bordered text-center">
@@ -17,8 +19,8 @@
         <td>{{consumer.address}}</td>
         <td>{{consumer.mobile}}</td>
         <td>
-            <button class="btn btn-sm btn-primary mx-2" (click)="redirectToEdit()">Edit</button>
-            <button class="btn btn-sm btn-danger mx-2">Delete</button>
+            <button class="btn btn-sm btn-primary mx-2" (click)="redirectToEdit(consumer.id)">Edit</button>
+            <button class="btn btn-sm btn-danger mx-2" (click)="deleteConsumer(consumer.id)">Delete</button>
         </td>
       </tr>
     </tbody>
