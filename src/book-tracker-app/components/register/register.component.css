@@ -1,0 +1,33 @@
+.login-layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+}
+
+.icon-size {
+    font-size: 40px;
+}
+
+.icon-close {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+.icon-close:hover {
+    background-color: slateblue;
+    color: black;
+}

@@ -1,6 +1,8 @@
 <div class="login-layout">
     <div class="login-container">
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+            </div>
             <div class="text-center mb-3">
                 <i class="fa-solid fa-lock icon-size mb-3"></i>
                 <h2>Welcome</h2>
@@ -13,7 +15,10 @@
                 <input type="password" class="form-control" id="userpassword" name="userpassword" formControlName="password" placeholder="Password" autocomplete="off">
             </div>
             <div class="text-center mb-3">
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-primary mx-2">Login</button>
+            </div>
+            <div class="mb-3" style="float: right;">
+                <a [routerLink]="['/register']">Register User</a>
             </div>
         </form>
     </div>

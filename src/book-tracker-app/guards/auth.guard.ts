@@ -13,7 +13,6 @@ export class AuthGuard {
       this.router.navigate(['login']);
       return false;
     }
-
     return this.authenticationService.isLoggedIn();
   }
 }

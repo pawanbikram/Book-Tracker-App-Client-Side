@@ -15,12 +15,12 @@ import { BorrowRecordComponent } from './components/borrow-details/borrow-record
 const routes: Routes = [
   {
     path: '', component: MasterComponent, children: [
+      { path: '', redirectTo: '/home/books', pathMatch: 'full' },
       { path: 'books', component: BooksComponent },
       { path: 'consumers', component: ConsumersComponent },
       { path: 'borrowDetails', component: BorrowDetailsComponent },
       { path: 'aboutUs', component: AboutUsComponent },
       { path: 'contactUs', component: ContactUsComponent },
-      { path: '', redirectTo: '/home/books', pathMatch: 'full' },
       { path: 'books/addBook', component: AddBookComponent },
       { path: 'books/editBook/:id', component: EditBookComponent },
       { path: 'consumers/addConsumer', component: AddConsumerComponent },
