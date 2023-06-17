@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { SideMenu } from '../../models/side-menu.model';
-import { AuthService } from 'src/book-tracker-app/services/auth.service';
+import { AuthenticationService } from 'src/book-tracker-app/services/authentication.service';
 
 @Component({
   selector: 'app-master',
@@ -13,7 +13,7 @@ import { AuthService } from 'src/book-tracker-app/services/auth.service';
 export class MasterComponent {
   title = "Book Tracker App";
   sideMenu = SideMenu;
-  constructor(private router: Router, private auth: AuthService) {
+  constructor(private router: Router, private authenticationService: AuthenticationService) {
 
   }
   homeIcon() {
@@ -21,6 +21,6 @@ export class MasterComponent {
   }
 
   logout() {
-    this.auth.logout();
+    this.authenticationService.logout();
   }
 }

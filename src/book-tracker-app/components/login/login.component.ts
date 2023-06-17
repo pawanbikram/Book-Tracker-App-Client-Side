@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/book-tracker-app/services/auth.service';
+import { AuthenticationService } from 'src/book-tracker-app/services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -15,24 +15,24 @@ export class LoginComponent {
     password: new FormControl('')
   });
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private router: Router, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    if (this.auth.isLoggedIn()) {
+    if (this.authenticationService.isLoggedIn()) {
       this.router.navigate(['home']);
     }
   }
 
   onSubmit() {
-    if (this.loginForm.valid) {
-      this.auth.login(this.loginForm.value).subscribe(
-        (result) => {
-          this.router.navigate(['home']);
-        },
-        (err: Error) => {
-          alert(err.message);
-        }
-      )
-    }
+    this.authenticationService.login(this.loginForm.value).subscribe(
+      (result) => {
+        this.authenticationService.setToken(result);
+        alert('Login successful');
+        this.router.navigate(['home']);
+      },
+      (err) => {
+        alert('Login failed');
+      }
+    );
   }
 }

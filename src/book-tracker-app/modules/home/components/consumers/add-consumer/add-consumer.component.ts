@@ -20,8 +20,8 @@ export class AddConsumerComponent {
       next: (response) => {
         this.router.navigate(['home/consumers']);
       },
-      error: (response) => {
-        alert(response);
+      error: (error) => {
+        console.error('Error adding consumer', error);
       }
     });
   }

@@ -20,8 +20,8 @@ export class AddBookComponent {
       next: (response) => {
         this.router.navigate(['home/books']);
       },
-      error: (response) => {
-        alert(response);
+      error: (error) => {
+        console.error('Error adding book:', error);
       }
     });
   }

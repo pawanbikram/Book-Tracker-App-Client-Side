@@ -40,8 +40,8 @@ export class EditConsumerComponent {
       next: (response) => {
         this.router.navigate(['home/consumers']);
       },
-      error: (response) => {
-        alert(response);
+      error: (error) => {
+        console.error('Error editing consumer', error);
       }
     });   
   }

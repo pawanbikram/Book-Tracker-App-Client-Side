@@ -14,6 +14,9 @@ export class ConsumersComponent {
   constructor(private router: Router, private consumersService: ConsumersService) {
   }
   ngOnInit() {
+    this.fetchConsumers();
+  }
+  fetchConsumers() {
     this.consumersService.getAllConsumers().subscribe({
       next: (response) => {
         this.consumers = response;
@@ -32,11 +35,11 @@ export class ConsumersComponent {
   deleteConsumer(id: number) {
     this.consumersService.deleteConsumer(id).subscribe({
       next: (response) => {
-        this.router.navigate(['home/consumers']);
+        this.fetchConsumers();
       },
-      error: (response) => {
-        alert(response);
+      error: (error) => {
+        console.error('Error deleting consumer', error);
       }
-    });   
+    });
   }
 }

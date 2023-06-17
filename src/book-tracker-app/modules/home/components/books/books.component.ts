@@ -15,12 +15,15 @@ export class BooksComponent {
   constructor(private router: Router, private booksService: BooksService) {
   }
   ngOnInit() {
+    this.fetchBooks();
+  }
+  fetchBooks() {
     this.booksService.getAllBooks().subscribe({
       next: (response) => {
         this.books = response;
       },
-      error: (response) => {
-        alert(response);
+      error: (error) => {
+        console.error('Error fetching books:', error);
       }
     });
   }
@@ -33,10 +36,10 @@ export class BooksComponent {
   deleteBook(id: number) {
     this.booksService.deleteBook(id).subscribe({
       next: (response) => {
-        this.router.navigate(['home/books']);       
+        this.fetchBooks();       
       },
-      error: (response) => {
-        alert(response);
+      error: (error) => {
+        console.error('Error deleting book:', error);
       }
     });
   }

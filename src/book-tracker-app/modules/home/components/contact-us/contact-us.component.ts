@@ -12,18 +12,17 @@ import { Router } from '@angular/router';
 
 export class ContactUsComponent {
   contact: Contact = new Contact();
-  contacts: Array<Contact> = new Array<Contact>();
   constructor(private contactUsService: ContactUsService, private router: Router) {
     this.contact = new Contact();
   }
   onSubmit() {
     this.contactUsService.addContact(this.contact).subscribe({
       next: (response) => {
-        alert("Submitted");
+        this.contact = new Contact();
         this.router.navigate(['home/contactUs']);
       },
-      error: (response) => {
-        alert(response);
+      error: (error) => {
+        console.error('Error submitting contact', error);
       }
     });
   }

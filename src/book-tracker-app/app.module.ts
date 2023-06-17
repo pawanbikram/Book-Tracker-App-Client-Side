@@ -6,7 +6,10 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+
+import { AuthGuard } from './guards/auth.guard';
+import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 
