@@ -1,46 +1,70 @@
 <div class="container">
     <h2 class="text-center">Book Borrow Record</h2>
-    <form class="row g-3" (ngSubmit)="onSubmit()">
+    <form class="row g-3" [formGroup]="borrowRecordForm" (ngSubmit)="onSubmit()">
         <div class="col-md-12" style="display: flex;justify-content: space-between;">
             <div class="col-md-3 form-group">
-                <label for="borrower">Borrower</label>
-                <select id="borrower" class="form-control" required>
+                <label for="borrowerName">Borrower</label>
+                <select id="borrowerName" class="form-control" formControlName="borrower" required>
                     <option value="">Choose Borrower</option>
-                    <option ></option>
+                    <option *ngFor="let borrower of borrowers" [value]="borrower.name">{{ borrower.name }}</option>
                 </select>
+                <div *ngIf="borrowerControl?.invalid && (borrowerControl?.dirty || borrowerControl?.touched)"
+                    class="text-danger">
+                    <div *ngIf="borrowerControl?.errors?.['required']">Borrower is required.</div>
+                </div>
             </div>
             <div class="col-md-3 form-group">
-                <label for="book">Book</label>
-                <select id="book" class="form-control" required>
+                <label for="bookName">Book</label>
+                <select id="bookName" class="form-control" formControlName="book" required>
                     <option value="">Choose Book</option>
-                    <option></option>
+                    <option *ngFor="let book of getAvailableBooks()" [value]="book.name">{{ book.name }}</option>
                 </select>
+                <div *ngIf="bookControl?.invalid && (bookControl?.dirty || bookControl?.touched)" class="text-danger">
+                    <div *ngIf="bookControl?.errors?.['required']">Book is required.</div>
+                </div>
             </div>
         </div>
         <div class="col-md-2 form-group">
             <label for="sn">S.N.</label>
-            <input type="number" id="sn" class="form-control" required>
+            <input type="number" id="sn" class="form-control" formControlName="sn" required>
+            <div *ngIf="snControl?.invalid && (snControl?.dirty || snControl?.touched)" class="text-danger">
+                <div *ngIf="snControl?.errors?.['required']">S.N. is required.</div>
+            </div>
         </div>
-        
+
         <div class="col-md-2 form-group">
-            <label for="borrowDate">Borrow Date</label>
-            <input type="date" id="borrowDate"  class="form-control" required>
+            <label for="bDate">Borrow Date</label>
+            <input type="date" id="bDate" class="form-control" formControlName="bDate" required>
+            <div *ngIf="borrowDateControl?.invalid && (borrowDateControl?.dirty || borrowDateControl?.touched)"
+                class="text-danger">
+                <div *ngIf="borrowDateControl?.errors?.['required']">Borrow Date is required.</div>
+            </div>
         </div>
-        
+
         <div class="col-md-2 form-group">
-            <label for="returnDate">Return Date</label>
-            <input type="date" id="returnDate"  class="form-control" required>
+            <label for="rDate">Return Date</label>
+            <input type="date" id="rDate" class="form-control" formControlName="rDate" required>
+            <div *ngIf="returnDateControl?.invalid && (returnDateControl?.dirty || returnDateControl?.touched)"
+                class="text-danger">
+                <div *ngIf="returnDateControl?.errors?.['required']">Return Date is required.</div>
+            </div>
         </div>
         <div class="col-md-2 form-group">
             <label for="quantity">Quantity</label>
-            <input type="number" id="quantity" class="form-control" required>
+            <input type="number" id="quantity" class="form-control" formControlName="quantity"
+                [max]="getAvailableQuantity()" required>
+            <div *ngIf="quantityControl?.invalid && (quantityControl?.dirty || quantityControl?.touched)"
+                class="text-danger">
+                <div *ngIf="quantityControl?.errors?.['required']">Quantity is required.</div>
+            </div>
         </div>
         <div class="col-md-4 form-group">
-            <label for="borrowCharge">Borrow Charge(Qty*5% of price)</label>
-            <input type="number" id="borrowCharge" class="form-control" required>
+            <label for="borrowCharge">Borrow Charge(Qty * 5% of price)</label>
+            <input type="number" id="borrowCharge" class="form-control" formControlName="borrowCharge" required>
         </div>
-        <div class="form-group my-3" style="display: flex;justify-content: flex-end;"> 
-            <button type="submit" class="btn btn-sm btn-primary mx-2">Submit</button>
+        <div class="form-group my-3" style="display: flex;justify-content: flex-end;">
+            <button type="submit" class="btn btn-sm btn-primary mx-2"
+                [disabled]="borrowRecordForm.invalid">Submit</button>
             <button type="button" class="btn btn-sm btn-danger mx-2" (click)="redirectToBorrowDetails()">Cancel</button>
         </div>
     </form>

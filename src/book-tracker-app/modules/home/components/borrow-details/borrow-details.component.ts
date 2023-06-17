@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { BorrowDetail } from '../../models/borrow-detail.model';
+
+import { BookBorrowRecord } from '../../models/book-borrow-record.model';
 import { Router } from '@angular/router';
+import { BookBorrowRecordService } from 'src/book-tracker-app/services/book-borrow-record.service';
 
 @Component({
   selector: 'app-borrow-details',
@@ -9,27 +11,20 @@ import { Router } from '@angular/router';
 })
 
 export class BorrowDetailsComponent {
-  borrowDetail: BorrowDetail = new BorrowDetail();
-  borrowDetails: Array<BorrowDetail> = new Array<BorrowDetail>();
-  constructor(private router: Router) { 
-    this.borrowDetails = [
-      {
-        sn: 1,
-        name: "Ramesh Subedi",
-        book: "DSA",
-        quantity: 2,
-        bdate: Date(),
-        rdate: Date()
+  bookBorrowRecords: Array<BookBorrowRecord> = new Array<BookBorrowRecord>();
+  constructor(private router: Router, private bookBorrowRecord: BookBorrowRecordService) { }
+  ngOnInit() {
+    this.fetchBookBorrrowRecords();
+  }
+  fetchBookBorrrowRecords() {
+    this.bookBorrowRecord.getAllBookBorrowRecords().subscribe({
+      next: (response) => {
+        this.bookBorrowRecords = response;
       },
-      {
-        sn: 2,
-        name: "Ramesh Subedi2",
-        book: "DSA2",
-        quantity: 4,
-        bdate: Date(),
-        rdate: Date()
-      },
-    ];
+      error: (error) => {
+        console.error('Error fetching book borrow records', error);
+      }
+    })
   }
   redirectToAdd() {
     this.router.navigate(['home/borrowDetails/borrowRecord']);

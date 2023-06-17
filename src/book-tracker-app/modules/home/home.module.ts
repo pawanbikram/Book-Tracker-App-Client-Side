@@ -10,7 +10,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { AddBookComponent } from './components/books/add-book/add-book.component';
 import { EditBookComponent } from './components/books/edit-book/edit-book.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddConsumerComponent } from './components/consumers/add-consumer/add-consumer.component';
 import { EditConsumerComponent } from './components/consumers/edit-consumer/edit-consumer.component';
 import { BorrowRecordComponent } from './components/borrow-details/borrow-record/borrow-record.component';
@@ -32,7 +32,8 @@ import { BorrowRecordComponent } from './components/borrow-details/borrow-record
   imports: [
     CommonModule,
     HomeRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 

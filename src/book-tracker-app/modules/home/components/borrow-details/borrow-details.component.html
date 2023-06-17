@@ -1,3 +1,5 @@
+<h2 class="text-center">Borrow Details</h2>
+
 <button class="btn btn-sm btn-primary my-3" style="float: right;" (click)="redirectToAdd()">Add Book Borrow Record</button>
 
 <table class="table table-bordered text-center">
@@ -12,13 +14,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let borrowDetail of borrowDetails;">
+    <tr *ngFor="let borrowDetail of bookBorrowRecords;">
       <th scope="row">{{borrowDetail.sn}}</th>
-      <td>{{borrowDetail.name}}</td>
+      <td>{{borrowDetail.borrower}}</td>
       <td>{{borrowDetail.book}}</td>
       <td>{{borrowDetail.quantity}}</td>
-      <td>{{borrowDetail.bdate}}</td>
-      <td>{{borrowDetail.rdate}}</td>
+      <td>{{borrowDetail.bDate}}</td>
+      <td>{{borrowDetail.rDate}}</td>
     </tr>
   </tbody>
 </table>
